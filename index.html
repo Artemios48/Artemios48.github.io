@@ -24,7 +24,7 @@
         }
         h1 {
             margin-top: 50px;
-            margin-bottom: 10px;
+            margin-bottom: 10px
         }
         img{
             width: 70px;
@@ -45,9 +45,11 @@
             cursor: pointer;
             transition: all 500ms ease;
             color: var(--tg-theme-button-text-color);
+            border: 2px solid #2B3885 ;
+
         }
         button:hover {
-            background: var(--tg-theme-secondary-text-color);
+            background: #2B3885;
         }
         #form { 
             text-align: center;
@@ -64,26 +66,45 @@
         input:focus {
             border-color: #db5d5d;
         }
-
+        div {
+            display: flex;
+            justify-content: center;
+            }
 
     </style>
 </head>
 <body>
     <div>
-        <h1>Форма</h1>
+        <h1 style="text-align: center; ">Форма</h1>
     </div>
+    
     <form>
         <input type="text" placeholder="Имя" id="user_name">
         <input type="text" placeholder="Фамилия" id="user_surname">
         <input type="text" placeholder="Предложение/замечание" id="problem">
-        <button id="GO" font-weight=500>Готово </button>
+        <div>
+            <button id="GO" font-weight=500>Готово </button>
+        </div>
+        
 
     </form>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
         let go = document.getElementById('GO')
+        tg.expend();
+
+
         go.addEventListener('click', () => {
+            let name = document.getElementById('user_name');
+            let surname = document.getElementById('user_surname');
+            let problem = document.getElementById('problem');
+            let data = {
+                name: name,
+                surname: surname,
+                problem: problem
+            }
+            tg.sendData(JSON.stringify(data));
             tg.close();
         });
     </script>
