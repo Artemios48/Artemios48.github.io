@@ -75,9 +75,9 @@
 </head>
 <body>
     <div>
-        <h1 style="text-align: center; ">Форма</h1>
+        <h1 style="text-align: center;">Форма</h1>
     </div>
-    
+
     <form>
         <input type="text" placeholder="Имя" id="user_name">
         <input type="text" placeholder="Фамилия" id="user_surname">
@@ -86,39 +86,41 @@
         <div>
             <button id="GO" font-weight=500>Готово </button>
         </div>
-        
+
 
     </form>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
-        let go = document.getElementById('GO')
+        let go = document.getElementById('GO');
 
-
-        go.addEventListener('click', () => {
-            document.getElementById('error').innerText = '';
-            let name = document.getElementById('user_name');
-            let surname = document.getElementById('user_surname');
-            let problem = document.getElementById('problem');
-            if (name.length <2) {
-                document.getElementById('error').innerText = 'Ошибка в имени!';
-                return;
-            }
-            if (surname.length <2) {
-                document.getElementById('error').innerText = 'Ошибка в фамилии!';
-                return;
-            }
-            if (problem.length <2) {
-                document.getElementById('error').innerText = 'Ошибка в сообщении!';
-                return;
-            }
-            let data = {
-                name: name,
-                surname: surname,
-                problem: problem
-            }
-            tg.sendData(JSON.stringify(data));
-            tg.close();});
+        tg.ready(() => { // Оберните tg.sendData в tg.ready()
+            go.addEventListener('click', () => {
+                document.getElementById('error').innerText = '';
+                let name = document.getElementById('user_name').value; // Получите значение из инпута
+                let surname = document.getElementById('user_surname').value; // Получите значение из инпута
+                let problem = document.getElementById('problem').value; // Получите значение из инпута
+                if (name.length < 2) {
+                    document.getElementById('error').innerText = 'Ошибка в имени!';
+                    return;
+                }
+                if (surname.length < 2) {
+                    document.getElementById('error').innerText = 'Ошибка в фамилии!';
+                    return;
+                }
+                if (problem.length < 2) {
+                    document.getElementById('error').innerText = 'Ошибка в сообщении!';
+                    return;
+                }
+                let data = {
+                    name: name,
+                    surname: surname,
+                    problem: problem
+                }
+                tg.sendData(JSON.stringify(data)); // Преобразуйте объект data в строку JSON
+                tg.close();
+            });
+        });
     </script>
 </body>
 </html>
