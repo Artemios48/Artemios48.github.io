@@ -95,8 +95,16 @@
 
 
         go.addEventListener('click', () => {
-            tg.close();
-        });
+            let name = document.getElementById('user_name');
+            let surname = document.getElementById('user_surname');
+            let problem = document.getElementById('problem');
+            let data = {
+                name: name,
+                surname: surname,
+                problem: problem
+            }
+            tg.sendData(JSON.stringify(data));
+            tg.close();});
     </script>
 </body>
 </html>
