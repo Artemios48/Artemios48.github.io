@@ -82,6 +82,7 @@
         <input type="text" placeholder="Имя" id="user_name">
         <input type="text" placeholder="Фамилия" id="user_surname">
         <input type="text" placeholder="Предложение/замечание" id="problem">
+        <div id="error"></div>
         <div>
             <button id="GO" font-weight=500>Готово </button>
         </div>
@@ -95,9 +96,22 @@
 
 
         go.addEventListener('click', () => {
+            document.getElementById('error').innerText = '';
             let name = document.getElementById('user_name');
             let surname = document.getElementById('user_surname');
             let problem = document.getElementById('problem');
+            if (name.length <2) {
+                document.getElementById('error').innerText = 'Ошибка в имени!';
+                return;
+            }
+            if (surname.length <2) {
+                document.getElementById('error').innerText = 'Ошибка в фамилии!';
+                return;
+            }
+            if (problem.length <2) {
+                document.getElementById('error').innerText = 'Ошибка в сообщении!';
+                return;
+            }
             let data = {
                 name: name,
                 surname: surname,
