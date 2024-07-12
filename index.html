@@ -100,18 +100,6 @@
                 let name = document.getElementById('user_name').value; // Получите значение из инпута
                 let surname = document.getElementById('user_surname').value; // Получите значение из инпута
                 let problem = document.getElementById('problem').value; // Получите значение из инпута
-                if (name.length < 2) {
-                    document.getElementById('error').innerText = 'Ошибка в имени!';
-                    return;
-                }
-                if (surname.length < 2) {
-                    document.getElementById('error').innerText = 'Ошибка в фамилии!';
-                    return;
-                }
-                if (problem.length < 2) {
-                    document.getElementById('error').innerText = 'Ошибка в сообщении!';
-                    return;
-                }
                 let data = {
                     name: name,
                     surname: surname,
