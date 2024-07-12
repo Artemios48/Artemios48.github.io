@@ -97,9 +97,9 @@
 
         go.addEventListener('click', () => {
             document.getElementById('error').innerText = '';
-            let name = document.getElementById('user_name');
-            let surname = document.getElementById('user_surname');
-            let problem = document.getElementById('problem');
+            let name = document.getElementById('user_name').value;
+            let surname = document.getElementById('user_surname').value;
+            let problem = document.getElementById('problem').value;
             if (name.length <2) {
                 document.getElementById('error').innerText = 'Ошибка в имени!';
                 return;
@@ -118,7 +118,8 @@
                 problem: problem
             }
             tg.sendData(JSON.stringify(data));
-            tg.close();});
+            tg.close();
+        });
     </script>
 </body>
 </html>
