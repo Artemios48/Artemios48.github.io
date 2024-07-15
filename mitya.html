@@ -48,9 +48,7 @@
             background-size: cover;
             background-color: var(--tg-theme-bg-color);
         }
-        #form { 
-            text-align: center;
-        }
+
         div {
             display: flex;
             justify-content: center;
@@ -73,11 +71,15 @@
             cursor: pointer;
             transition: all 500ms ease;
             color: var(--tg-theme-text-color);
-            border: 2px solid var(--tg-theme-text-color) ;
+            border: 2px solid #000000 ;
         }
 
     </style>
 
+ 
+
+</head>
+<body>       
         <div>
             <h1 style="text-align: center; ">Нажми на меня)))</h1>
         </div>
@@ -86,8 +88,13 @@
         </div>
         
         <h1 style="text-align: center; " id="clicks">0</h1>
+        <div>
+            <button id="letsgo_btn">Выйти</button>
+        </div>
         
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
         <script>
+            let tg = window.Telegram.WebApp;
             let letsgo_btn = document.getElementById('letsgo_btn')
             let click = document.getElementById('click')
             var a = 0
@@ -96,7 +103,7 @@
                 document.getElementById('clicks').innerText = a;
                 let data = {
                     a: a
-            }
+                }
             
             })
             letsgo_btn.addEventListener('letsgo_btn', () => {
@@ -108,11 +115,6 @@
 
     
 
-
-</head>
-<body>
-    <div>
-        <button id="letsgo_btn">Выйти</button>
-    </div>
+    
 </body>
 </html>
