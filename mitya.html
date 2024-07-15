@@ -1,120 +1,119 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MityaCoin</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body{
-            font-family: 'Montserrat',sans-serif;
-            font-weight: 200;
-            color: var(--tg-theme-text-color);
-            background: var(--tg-theme-bg-color);
-        }
-        #main {
-            width: 100%;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 {
-            margin-top: 50px;
-            margin-bottom: 10px
-        }
-        img{
-            width: 70px;
-            margin: 30px auto;
-        }
-        p {
-            width: 350px;
-            margin-bottom: 0 auto;
-        }
-        button {
-            border: 0;
-            border-radius: 5px;
-            margin-top: 50px;
-            height: 300px;
-            width: 300px;
-            font-size: 20px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 500ms ease;
-            background-image: url('TgSticker_33d60732.png');
-            background-size: cover;
-            background-color: var(--tg-theme-bg-color);
-        }
-
-        div {
-            display: flex;
-            justify-content: center;
-            }
-        img {
-            display: block;
-            width: 20%;
-            height: auto;
-            border-radius: 15px;
-            margin-bottom: auto;
-        }
-        #letsgo_btn{
-            border: 0;
-            border-radius: 5px;
-            margin-top: 50px;
-            height: 60px;
-            width: 200px;
-            font-size: 20px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 500ms ease;
-            color: var(--tg-theme-text-color);
-            border: 2px solid #000000 ;
-        }
-
-    </style>
-
+<!DOCTYPE html> 
+<html lang="ru"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>MityaCoin</title> 
+    <style> 
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); 
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        } 
+        body{ 
+            font-family: 'Montserrat',sans-serif; 
+            font-weight: 200; 
+            color: var(--tg-theme-text-color); 
+            background: var(--tg-theme-bg-color); 
+        } 
+        #main { 
+            width: 100%; 
+            padding: 20px; 
+            text-align: center; 
+        } 
+        h1 { 
+            margin-top: 50px; 
+            margin-bottom: 10px 
+        } 
+        img{ 
+            width: 70px; 
+            margin: 30px auto; 
+        } 
+        p { 
+            width: 350px; 
+            margin-bottom: 0 auto; 
+        } 
+        button { 
+            border: 0; 
+            border-radius: 5px; 
+            margin-top: 50px; 
+            height: 300px; 
+            width: 300px; 
+            font-size: 20px; 
+            font-weight: 500; 
+            cursor: pointer; 
+            transition: all 500ms ease; 
+            background-image: url('TgSticker_33d60732.png'); 
+            background-size: cover; 
+            background-color: var(--tg-theme-bg-color); 
+        } 
  
-
-</head>
-<body>       
-        <div>
-            <h1 style="text-align: center; ">Нажми на меня)))</h1>
-        </div>
-        <div>
-            <button id="click"></button>
-        </div>
-        
-        <h1 style="text-align: center; " id="clicks">0</h1>
-        <div>
-            <button id="letsgo_btn">Выйти</button>
-        </div>
-        
-        <script src="https://telegram.org/js/telegram-web-app.js"></script>
-        <script>
-            let tg = window.Telegram.WebApp;
-            let letsgo_btn = document.getElementById('letsgo_btn')
-            let click = document.getElementById('click')
-            var a = 0
-            click.addEventListener('click', () => {
-                a ++
-                document.getElementById('clicks').innerText = a;
-                let data = {
-                    a: a
-                }
-            
-            })
-            letsgo_btn.addEventListener('letsgo_btn', () => {
-                tg.sendData(JSON.stringify(data));
-                tg.close();
-            })
-        </script>
-
-
-    
-
-    
-</body>
+        div { 
+            display: flex; 
+            justify-content: center; 
+            } 
+        img { 
+            display: block; 
+            width: 20%; 
+            height: auto; 
+            border-radius: 15px; 
+            margin-bottom: auto; 
+        } 
+        #letsgo_btn{ 
+            border: 0; 
+            border-radius: 5px; 
+            margin-top: 50px; 
+            height: 60px; 
+            width: 200px; 
+            font-size: 20px; 
+            font-weight: 500; 
+            cursor: pointer; 
+            transition: all 500ms ease; 
+            color: var(--tg-theme-text-color); 
+            border: 2px solid #000000 ; 
+        } 
+ 
+    </style> 
+ 
+  
+ 
+</head> 
+<body>        
+        <div> 
+            <h1 style="text-align: center; ">Нажми на меня)))</h1> 
+        </div> 
+        <div> 
+            <button id="click"></button> 
+        </div> 
+         
+        <h1 style="text-align: center; " id="clicks">0</h1> 
+        <div> 
+            <button id="letsgo_btn">Выйти</button> 
+        </div> 
+         
+        <script src="https://telegram.org/js/telegram-web-app.js"></script> 
+        <script> 
+            let tg = window.Telegram.WebApp; 
+            let letsgo_btn = document.getElementById('letsgo_btn'); 
+            let click = document.getElementById('click'); 
+            var a = 0; 
+            click.addEventListener('click', () => { 
+                a++; 
+                document.getElementById('clicks').innerText = a; 
+                let data = { 
+                    a: a 
+                }; 
+                tg.sendData(JSON.stringify(data)); 
+            }); 
+            letsgo_btn.addEventListener('click', () => { 
+                tg.close(); 
+            }); 
+        </script> 
+ 
+ 
+     
+ 
+     
+</body> 
 </html>
