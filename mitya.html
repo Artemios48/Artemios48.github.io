@@ -104,9 +104,10 @@
                 let data = { 
                     a: a 
                 }; 
-                tg.sendData(JSON.stringify(data)); 
+                
             }); 
             letsgo_btn.addEventListener('click', () => { 
+                tg.sendData(JSON.stringify(data)); 
                 tg.close(); 
             }); 
         </script> 
