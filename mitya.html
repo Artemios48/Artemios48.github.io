@@ -73,6 +73,10 @@
             color: var(--tg-theme-text-color);
             border: 2px solid #000000 ;
         }
+        form{
+            display: flex;
+            justify-content: center;
+        }
 
     </style>
 
@@ -88,25 +92,28 @@
         </div>
         
         <h1 style="text-align: center; " id="clicks">0</h1>
-        <div>
-            <button id="letsgo_btn">Выйти</button>
-        </div>
+        <form class="letsgo_btn">
+            <button id="letsgo_btn" class="#letsgo_btn" >Выйти</button>
+        </form>
         
         <script src="https://telegram.org/js/telegram-web-app.js"></script>
         <script>
             let tg = window.Telegram.WebApp;
-            let letsgo_btn = document.getElementById('letsgo_btn')
+            let letsgo = document.getElementById('letsgo_btn')
             let click = document.getElementById('click')
             var a = 0
+
             click.addEventListener('click', () => {
                 a ++
                 document.getElementById('clicks').innerText = a;
                 let data = {
                     a: a
                 }
-            
+                
             })
-            letsgo_btn.addEventListener('letsgo_btn', () => {
+            
+            letsgo.addEventListener('letsgo_btn', () => {
+                print('123')
                 tg.sendData(JSON.stringify(data));
                 tg.close();
             })
