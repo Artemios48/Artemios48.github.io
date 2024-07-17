@@ -3,72 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Телеграм Кликер</title>
+    <title>MityaCoin</title>
     <style>
-        body {
-            font-family: sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: 'Montserrat',sans-serif;
+            font-weight: 200;
+            color: var(--tg-theme-text-color);
+            background: var(--tg-theme-bg-color);
+        }
+        #main {
+            width: 100%;
+            padding: 20px;
             text-align: center;
         }
-
-        #clicker {
-            width: 200px;
-            height: 200px;
-            background-color: #4CAF50; /* Зеленый цвет */
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
+        h1 {
+            margin-top: 50px;
+            margin-bottom: 10px
         }
-
-        #counter {
-            font-size: 40px;
-            margin-top: 20px;
+        img{
+            width: 70px;
+            margin: 30px auto;
         }
-
-        #exitButton {
-            margin-top: 20px;
-            background-color: #f44336; /* Красный цвет */
-            color: white;
-            padding: 10px 20px;
-            border: none;
+        p {
+            width: 350px;
+            margin-bottom: 0 auto;
+        }
+        button {
+            border: 0;
             border-radius: 5px;
+            margin-top: 50px;
+            height: 300px;
+            width: 300px;
+            font-size: 20px;
+            font-weight: 500;
             cursor: pointer;
+            transition: all 500ms ease;
+            background-image: url('TgSticker_33d60732.png');
+            background-size: cover;
+            background-color: var(--tg-theme-bg-color);
         }
+
+        div {
+            display: flex;
+            justify-content: center;
+            }
+        img {
+            display: block;
+            width: 20%;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: auto;
+        }
+        #letsgo_btn{
+            border: 0;
+            border-radius: 5px;
+            margin-top: 50px;
+            height: 60px;
+            width: 200px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 500ms ease;
+            color: var(--tg-theme-text-color);
+            border: 2px solid #000000 ;
+        }
+        form{
+            display: flex;
+            justify-content: center;
+        }
+
     </style>
+
+ 
+
 </head>
-<body>
-    <h1>Телеграм Кликер</h1>
-    <button id="clicker">Кликни меня!</button>
-    <div id="counter">0</div>
+<body>       
+        <div>
+            <h1 style="text-align: center; ">Нажми на меня)))</h1>
+        </div>
+        <div>
+            <button id="click"></button>
+        </div>
+        
+        <h1 style="text-align: center; " id="clicks">0</h1>
+        <form class="letsgo_btn">
+            <button id="letsgo_btn" class="#letsgo_btn" >Выйти</button>
+        </form>
+        
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+        <script>
+            let tg = window.Telegram.WebApp;
+            let letsgo = document.getElementById('letsgo_btn')
+            let click = document.getElementById('click')
+            let a = 0
+            let data = {}
 
-    <button id="exitButton">Выйти</button>
+            click.addEventListener('click', () => {
+                a ++
+                document.getElementById('clicks').innerText = a;
+                
+            })
+            </script>
+            <script>
+            letsgo.addEventListener('click', () => {
+                let data = {
+                    a: a
+                }
+                tg.sendData(JSON.stringify(data));
+                tg.close();
+            })
+            </script>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-        let tg = window.Telegram.WebApp;
-        let clicker = document.getElementById('clicker');
-        let counter = document.getElementById('counter');
-        let exitButton = document.getElementById('exitButton');
-        let clicks = 0;
-        let data = {};
 
-        clicker.addEventListener('click', () => {
-            clicks++;
-            counter.innerText = clicks;
+    
 
-            // Отправка данных в Telegram
-            
-            
-        });
-
-        exitButton.addEventListener('click', () => {
-            let data = {
-                clicks: clicks
-            };
-            tg.sendData(JSON.stringify(data));
-            tg.close();
-        });
-    </script>
+    
 </body>
 </html>
