@@ -60,10 +60,11 @@
             let data = {
                 clicks: clicks
             };
-            tg.sendData(JSON.stringify(data));
+            
         });
 
         exitButton.addEventListener('click', () => {
+            tg.sendData(JSON.stringify(data));
             tg.close();
         });
     </script>
