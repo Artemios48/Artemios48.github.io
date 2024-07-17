@@ -58,13 +58,14 @@
             counter.innerText = clicks;
 
             // Отправка данных в Telegram
-            let data = {
-                clicks: clicks
-            };
+            
             
         });
 
         exitButton.addEventListener('click', () => {
+            let data = {
+                clicks: clicks
+            };
             tg.sendData(JSON.stringify(data));
             tg.close();
         });
