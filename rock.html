@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MityaCoin</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: 'Montserrat',sans-serif;
+            font-weight: 200;
+            color: var(--tg-theme-text-color);
+            background: var(--tg-theme-bg-color);
+        }
+        #main {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 50px;
+            margin-bottom: 10px
+        }
+        img{
+            width: 70px;
+            margin: 30px auto;
+        }
+        p {
+            width: 350px;
+            margin-bottom: 0 auto;
+        }
+        .button_cl {
+            border: 0;
+            border-radius: 5px;
+            margin-top: 50px;
+            height: 300px;
+            width: 300px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 500ms ease;
+            background-image: url('rock.png');
+            background-size: cover;
+            background-color: var(--tg-theme-bg-color);
+        }
+        button:active {
+        letter-spacing: normal;
+        transition: 0.015s;
+        transform: translateY(2px);
+        transform: scale(0.95);}
+
+        div {
+            display: flex;
+            justify-content: center;
+            }
+        img {
+            display: block;
+            width: 20%;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: auto;
+        }
+        #letsgo_btn{
+            border: 0;
+            border-radius: 5px;
+            margin-top: 50px;
+            height: 60px;
+            width: 200px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 500ms ease;
+            color: var(--tg-theme-text-color);
+            border: 2px solid #000000 ;
+            background-color: var(--tg-theme-bg-color);
+        }
+        form{
+            display: flex;
+            justify-content: center;
+        }
+
+    </style>
+
+ 
+
+</head>
+<body>       
+        <div>
+            <h1 style="text-align: center; ">Нажми на меня)))</h1>
+        </div>
+        <div>
+            <button id="click" class="button_cl"></button>
+        </div>
+        
+        <h1 style="text-align: center; " id="clicks">0</h1>
+        
+        <form class="letsgo_btn">
+            <button id="letsgo_btn" class="#letsgo_btn" >Выйти</button>
+        </form>
+        
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+        <script>
+            let tg = window.Telegram.WebApp;
+            let letsgo = document.getElementById('letsgo_btn')
+            let click = document.getElementById('click')
+            let a = 0
+            let data = {}
+
+            click.addEventListener('click', () => {
+                a ++
+                document.getElementById('clicks').innerText = a;
+                
+            })
+            letsgo.addEventListener('click', () => {
+                let data = {
+                    a: a
+                }
+                tg.sendData(JSON.stringify(data));
+                tg.close();
+            })
+            </script>
+
+
+    
+
+    
+</body>
+</html>
