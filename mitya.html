@@ -34,7 +34,7 @@
             width: 350px;
             margin-bottom: 0 auto;
         }
-        button {
+        .button_cl {
             border: 0;
             border-radius: 5px;
             margin-top: 50px;
@@ -44,10 +44,15 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 500ms ease;
-            background-image: url('TgSticker_33d60732.png');
+            background-image: url('217853.png');
             background-size: cover;
             background-color: var(--tg-theme-bg-color);
         }
+        button:active {
+        letter-spacing: normal;
+        transition: 0.15s;
+        transform: translateY(2px);
+        transform: scale(0.95);}
 
         div {
             display: flex;
@@ -88,7 +93,7 @@
             <h1 style="text-align: center; ">Нажми на меня)))</h1>
         </div>
         <div>
-            <button id="click"></button>
+            <button id="click" class="button_cl"></button>
         </div>
         
         <h1 style="text-align: center; " id="clicks">0</h1>
