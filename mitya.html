@@ -1,134 +1,192 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MityaCoin</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body{
-            font-family: 'Montserrat',sans-serif;
-            font-weight: 200;
-            color: var(--tg-theme-text-color);
-            background: var(--tg-theme-bg-color);
-        }
-        #main {
-            width: 100%;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 {
-            margin-top: 50px;
-            margin-bottom: 10px
-        }
-        img{
-            width: 70px;
-            margin: 30px auto;
-        }
-        p {
-            width: 350px;
-            margin-bottom: 0 auto;
-        }
-        .button_cl {
-            border: 0;
-            border-radius: 5px;
-            margin-top: 50px;
-            height: 300px;
-            width: 300px;
-            font-size: 20px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 500ms ease;
-            background-image: url('217853.png');
-            background-size: cover;
-            background-color: var(--tg-theme-bg-color);
-        }
-        button:active {
-        letter-spacing: normal;
-        transition: 0.015s;
-        transform: translateY(2px);
-        transform: scale(0.95);}
-
-        div {
-            display: flex;
-            justify-content: center;
-            }
-        img {
-            display: block;
-            width: 20%;
-            height: auto;
-            border-radius: 15px;
-            margin-bottom: auto;
-        }
-        #letsgo_btn{
-            border: 0;
-            border-radius: 5px;
-            margin-top: 50px;
-            height: 60px;
-            width: 200px;
-            font-size: 20px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 500ms ease;
-            color: var(--tg-theme-text-color);
-            border: 2px solid #000000 ;
-            background-color: var(--tg-theme-bg-color);
-        }
-        form{
-            display: flex;
-            justify-content: center;
-        }
-
-    </style>
-
- 
-
-</head>
-<body>       
-        <div>
-            <h1 style="text-align: center; ">Нажми на меня)))</h1>
-        </div>
-        <div>
-            <button id="click" class="button_cl"></button>
-        </div>
-        
-        <h1 style="text-align: center; " id="clicks">0</h1>
-        
-        <form class="letsgo_btn">
-            <button id="letsgo_btn" class="#letsgo_btn" >Выйти</button>
-        </form>
-        
-        <script src="https://telegram.org/js/telegram-web-app.js"></script>
-        <script>
-            const urlParams = new URLSearchParams(window.location.search);
-            let tg = window.Telegram.WebApp;
-            let letsgo = document.getElementById('letsgo_btn');
-            let click = document.getElementById('click');
-            let a = urlParams.get('c');
-            let data = {}
-
-            click.addEventListener('click', () => {
-                a ++
-                document.getElementById('clicks').innerText = a;
-                
-            })
-            letsgo.addEventListener('click', () => {
-                let data = {
-                    a: a
-                }
-                tg.sendData(JSON.stringify(data));
-                tg.close();
-            })
-            </script>
+import telebot
+from telebot import types
+from telebot.types import WebAppInfo
+import json
+import openpyxl
+from openpyxl import load_workbook
+from random import randint
 
 
-    
+fn = 'db_cl.xlsx' 
+wb = load_workbook(fn)  
+ws = wb['data']  
+print(f'Бот запущен a{ws.max_row}') 
 
-    
-</body>
-</html>
+skins = {'normal': 'https://artemios48.github.io/mitya.html?',
+        'buisness':'https://artemios48.github.io/buisness.html?',
+         'hack':'https://artemios48.github.io/hacker.html?',
+         'rock': 'https://artemios48.github.io/rock.html?'
+         }
+         
+
+bot = telebot.TeleBot("7450716979:AAEQXaPCPwNsPcfz_xWDWkZW0jNotprVlKk")
+
+
+@bot.message_handler(content_types=["text"])
+def start(message):
+    if message.text == "/start":
+        markup = types.ReplyKeyboardMarkup(resize_keyboard = True)
+        btn_MC = types.KeyboardButton('/MyCoins')
+        btn_MS = types.KeyboardButton('/MityaShop')
+        btn_MSK = types.KeyboardButton('/MySkins')
+        id = str(message.from_user.id)
+        for row in range(2,ws.max_row+1):
+            id_ = ws.cell(row=row, column=1).value
+            if id_ == id:
+                if ws.cell(row=row, column=6).value == 'Buisnes':
+                    btn_1 = types.KeyboardButton('Tap tap', web_app=WebAppInfo(url=f'{skins["buisness"]}c={ws.cell(row=row, column=2).value}'))
+                    markup.add(btn_1,btn_MC,btn_MS,btn_MSK)
+                elif ws.cell(row=row, column=6).value == 'hack':
+                    btn_1 = types.KeyboardButton('Tap tap', web_app=WebAppInfo(url=f'{skins["hack"]}c={ws.cell(row=row, column=2).value}'))
+                    markup.add(btn_1,btn_MC,btn_MS,btn_MSK)
+                elif ws.cell(row=row, column=6).value == 'rock':
+                    btn_1 = types.KeyboardButton('Tap tap', web_app=WebAppInfo(url=f'{skins["rock"]}c={ws.cell(row=row, column=2).value}'))
+                    markup.add(btn_1,btn_MC,btn_MS,btn_MSK)
+                else:
+                    btn_1 = types.KeyboardButton('Tap tap', web_app=WebAppInfo(url=f'{skins["normal"]}c={ws.cell(row=row, column=2).value}'))
+                    markup.add(btn_1,btn_MC,btn_MS,btn_MSK)
+                    print(f'{skins["normal"]}c={ws.cell(row=row, column=2).value}')
+
+        bot.send_message(message.from_user.id,'Привет кликай на Митяя )))',reply_markup=markup)
+    elif message.text == '/MyCoins':
+        HowMch(message)
+    elif message.text == '/MityaShop':
+        MityaShop(message)
+    elif message.text == '/MySkins':
+        MySkins(message)
+
+@bot.message_handler(content_types=['web_app_data'])
+
+def web_app(webAppMes):
+    id = str(webAppMes.from_user.id)
+    res = json.loads(webAppMes.web_app_data.data)
+    a = res['a']
+    for row in range(2,ws.max_row+1):
+        id_ = ws.cell(row=row, column=1).value
+        if id_ == id:
+            ws.cell(row=row, column=2).value += a
+            wb.save(fn)
+            wb.close()
+            break
+    else:
+        ws.append([id,a,0,0,0])
+        wb.save(fn)
+        wb.close()
+    #bot.send_message(webAppMes.from_user.id,f'У вас {a} Митя-коинов')
+
+@bot.message_handler(content_types=["text"])
+def MySkins(message):
+    try:
+        id = str(message.from_user.id)
+        for row in range(2,ws.max_row+1):
+            id_ = ws.cell(row=row, column=1).value
+            if id_ == id:
+                markup = types.InlineKeyboardMarkup()
+                if ws.cell(row=row, column=3).value == 1:
+                    markup.row(types.InlineKeyboardButton("Митя Рок-Звезда", callback_data='button3s'))
+                if ws.cell(row=row, column=4).value == 1:
+                    markup.row(types.InlineKeyboardButton("Дима Хакер 77", callback_data='button2s'))
+                if ws.cell(row=row, column=5).value == 1:
+                    markup.row(types.InlineKeyboardButton("Бизнесмен Дмитрий", callback_data='button1s'))
+                bot.send_message(message.from_user.id,'Это ваш шкафчик:', reply_markup=markup)
+    except:
+        bot.send_message(message.from_user.id,'Иди кликай , а не тыкай куда не надо')
+@bot.callback_query_handler(func=lambda call: True)
+def handle_callback_query_shkaf(call):
+    try:
+        id = str(call.from_user.id)
+        for row in range(2,ws.max_row+1):
+            id_ = ws.cell(row=row, column=1).value
+            ws.cell(row=row, column=6).value = 'normal'
+            if id_ == id:
+                if call.data == 'button1s':
+                    ws.cell(row=row, column=6).value = 'Buisnes'
+                elif call.data == 'button2s':
+                    ws.cell(row=row, column=6).value = 'hack'
+                elif call.data == 'button3s':
+                    ws.cell(row=row, column=6).value = 'rock'
+                markup = types.ReplyKeyboardMarkup(resize_keyboard = True)
+                btn_MC = types.KeyboardButton('/MyCoins')
+                btn_MS = types.KeyboardButton('/MityaShop')
+                btn_MSK = types.KeyboardButton('/MySkins')
+                id = str(call.from_user.id)
+                for row in range(2,ws.max_row+1):
+                    id_ = ws.cell(row=row, column=1).value
+                    if id_ == id:
+                        if ws.cell(row=row, column=6).value == 'Buisnes':
+                            btn_1 = types.KeyboardButton('Tap tap', web_app=WebAppInfo(url=f'{skins["buisness"]}+c={ws.cell(row=row, column=2).value}'))
+                            markup.add(btn_1,btn_MC,btn_MS,btn_MSK)
+                        elif ws.cell(row=row, column=6).value == 'hack':
+                            btn_1 = types.KeyboardButton('Tap tap', web_app=WebAppInfo(url=f'{skins["hack"]}+c={ws.cell(row=row, column=2).value}'))
+                            markup.add(btn_1,btn_MC,btn_MS,btn_MSK)
+                        elif ws.cell(row=row, column=6).value == 'rock':
+                            btn_1 = types.KeyboardButton('Tap tap', web_app=WebAppInfo(url=f'{skins["rock"]}+c={ws.cell(row=row, column=2).value}'))
+                            markup.add(btn_1,btn_MC,btn_MS,btn_MSK)
+                        else:
+                            btn_1 = types.KeyboardButton('Tap tap', web_app=WebAppInfo(url=f'{skins["normal"]}+c={ws.cell(row=row, column=2).value}'))
+                            markup.add(btn_1,btn_MC,btn_MS,btn_MSK)
+                bot.send_message(call.from_user.id,f'Вы выбрали: {ws.cell(row=row, column=6).value} скин',reply_markup=markup)
+                wb.save(fn)
+                wb.close()
+    except:
+        bot.send_message(call.from_user.id,'У вас ещё нет Мить')
+@bot.message_handler(content_types=["text"])
+def MityaShop(message):
+    markup = types.InlineKeyboardMarkup()
+    markup.row(types.InlineKeyboardButton("Бизнесмен Дмитрий 150 Mcl", callback_data='button1'),types.InlineKeyboardButton("Дима Хакер 77 Mcl", callback_data='button2'))
+    markup.row(types.InlineKeyboardButton("Митя Рок-Звезда 20 Mcl", callback_data='button3'))
+    bot.send_message(message.from_user.id,'Это магазин MityaShop , здесь вы можете покупать скины на вашего Митьку', reply_markup=markup)
+
+@bot.callback_query_handler(func=lambda call: True)
+def handle_callback_query(call):
+    try:
+        id = str(call.from_user.id)
+        for row in range(2,ws.max_row+1):
+            id_ = ws.cell(row=row, column=1).value
+            if id_ == id:
+                c = ws.cell(row=row, column=2).value
+                if call.data == 'button1':
+                    if c >= 150 :
+                        ws.cell(row=row, column=5).value = 1
+                        bot.send_message(call.message.chat.id, "Пока жду раф на кокосовом кликаю Митячка")
+                    else:
+                        bot.send_message(call.message.chat.id, "Иди на митю кликай, фу бедность")
+                elif call.data == 'button2':
+                    if c >= 77:
+                        ws.cell(row=row, column=2).value -=77
+                        ws.cell(row=row, column=4).value = 1
+                        bot.send_message(call.message.chat.id, "0110001")
+                    else:
+                        bot.send_message(call.message.chat.id, "Иди на митю кликай, фу бедность")
+                elif call.data == 'button3':
+                    if c >= 20:
+                        ws.cell(row=row, column=2).value -= 20
+                        ws.cell(row=row, column=3).value = 1
+                        bot.send_message(call.message.chat.id, "ЕЕЕ")
+                    else:
+                        bot.send_message(call.message.chat.id, "Иди на митю кликай, фу бедность")
+                wb.save(fn)
+                wb.close()
+        bot.send_message(call.message.chat.id, "Выбрать вашего митю можно в шкафчике : /MySkins")
+    except:
+        bot.send_message(call.from_user.id,f'У вас ещё нет Митя-коинов')
+
+@bot.message_handler(content_types=["text"])
+def HowMch(message):
+    try:
+        id = str(message.from_user.id)
+        for row in range(2,ws.max_row+1):
+            id_ = ws.cell(row=row, column=1).value
+            if id_ == id:
+                c = ws.cell(row=row, column=2).value
+                bot.send_message(message.from_user.id,f'У вас {c} Митя-коинов \n Листинг через {randint(1,7)} дня')
+                wb.save(fn)
+                wb.close()
+    except:
+        bot.send_message(message.from_user.id,f'У вас ещё нет Митя-коинов')
+
+
+
+
+
+bot.polling(none_stop=True, interval = 0)
