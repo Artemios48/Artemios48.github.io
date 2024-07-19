@@ -97,7 +97,11 @@
             <button id="click" class="button_cl"></button>
         </div>
         
-        <h1 style="text-align: center; " id="clicks">0</h1>
+        <h1 style="text-align: center; " id="clicks">
+            <script>
+                document.getElementById('clickss').innerText = urlParams.get('c');
+            </script>
+        </h1>
         
         <form class="letsgo_btn">
             <button id="letsgo_btn" class="letsgo_btn" >Выйти</button>
