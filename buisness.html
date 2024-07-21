@@ -97,18 +97,23 @@
             <button id="click" class="button_cl"></button>
         </div>
         
-        <h1 style="text-align: center; " id="clicks">0</h1>
+        <h1 style="text-align: center; " id="clicks">
+            <script>
+                document.getElementById('clickss').innerText = urlParams.get('c');
+            </script>
+        </h1>
         
         <form class="letsgo_btn">
-            <button id="letsgo_btn" class="#letsgo_btn" >Выйти</button>
+            <button id="letsgo_btn" class="letsgo_btn" >Выйти</button>
         </form>
         
         <script src="https://telegram.org/js/telegram-web-app.js"></script>
         <script>
+            const urlParams = new URLSearchParams(window.location.search);
             let tg = window.Telegram.WebApp;
-            let letsgo = document.getElementById('letsgo_btn')
-            let click = document.getElementById('click')
-            let a = 0
+            let letsgo = document.getElementById('letsgo_btn');
+            let click = document.getElementById('click');
+            let a = urlParams.get('c');
             let data = {}
 
             click.addEventListener('click', () => {
