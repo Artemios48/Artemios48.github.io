@@ -10,7 +10,7 @@ const $button_cl = document.querySelector('.button_cl')
 
 function setImage(){
     if (s == 'normal') {
-        $button_cl.setAttribute('style', 'background-image: url("normal.png")')
+        $button_cl.setAttribute('style', 'background-image: url("217853.png")')
     }
     else if (s == 'rock') {
         $button_cl.setAttribute('style', 'background-image: url("rock.png")')
