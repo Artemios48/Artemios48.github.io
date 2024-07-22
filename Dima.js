@@ -6,7 +6,7 @@ let a = urlParams.get('c');
 let s = urlParams.get('s');
 let data = {}
 const $button_cl = document.querySelector('.button_cl')
-
+document.getElementById('clicks').innerText = a;
 
 function setImage(){
     if (s == 'normal') {
