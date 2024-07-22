@@ -7,8 +7,9 @@ let s = urlParams.get('s');
 let data = {}
 const $button_cl = document.querySelector('.button_cl')
 document.getElementById('clicks').innerText = a;
-//window.location.search = "?c=50&s=normal";
-   
+//window.location.search = "?c=0&s=normal";
+document.body.style.overflow = "hidden"; // Запрещает прокрутку
+    
 function setImage(){
     if (s == 'normal') {
         $button_cl.setAttribute('style', 'background-image: url("normal.png")')
