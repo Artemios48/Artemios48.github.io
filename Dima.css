@@ -27,7 +27,6 @@ h1 {
 img {
     width: 70px;
     margin: 30px auto;
-    pointer-events: none;
 }
 
 p {
