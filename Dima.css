@@ -47,6 +47,7 @@ p {
     background-image: url('217853.png'); /* Замените на ваш путь к картинке */
     background-size: cover;
     background-color: var(--tg-theme-bg-color);
+    -webkit-tap-highlight-color: transparent;
 }
 
 button:active {
